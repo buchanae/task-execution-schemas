@@ -41,15 +41,15 @@ message TaskParameter {
   bool   create = 6;
 }
 
-//A command line to be executed and the docker container to run it
-message DockerExecutor {
+//A command line to be executed and the container to run it
+message Container {
   //REQUIRED
-  //Docker Image name
+  // Image name
   string imageName = 1;
   //REQUIRED
   //The command to be executed
   repeated string cmd = 2;
-  //OPTIONAL: default docker image directory
+  //OPTIONAL: default image directory
   //The working directory that the command will be executed in
   string workdir = 3;
   //OPTIONAL
@@ -77,7 +77,7 @@ message Volume {
   //Volumes loaded from a source will be mounted as read only
   string source = 3;
   //REQUIRED
-  //mount point for volume inside the docker container
+  //mount point for volume inside thecontainer
   string mountPoint = 6;
   //OPTIONAL default False
   bool   readonly = 7;
@@ -94,7 +94,7 @@ message Resources {
   //Minimum RAM required
   double minimumRamGb = 3;
   //REQUIRED
-  //Volumes to be mounted into the docker container
+  //Volumes to be mounted into the container
   repeated Volume volumes = 4;
   //OPTIONAL
   //optional scheduling information for systems where multiple compute zones are avalible
@@ -122,8 +122,8 @@ message Task {
   //Define required system resources to run job
   Resources resources = 6;
   //REQUIRED
-  //An array of docker executions that will be run sequentially
-  repeated DockerExecutor docker = 8;
+  //An array of containers that will be run sequentially
+  repeated Container containers = 8;
 }
 
 //Request listing of jobs tracked by server
