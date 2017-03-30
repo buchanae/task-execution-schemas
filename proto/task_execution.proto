@@ -98,13 +98,13 @@ message Volume {
 }
 
 message Resources {
-  //OPTIONAL default 1
+  //OPTIONAL
   //Minimum number of CPUs
   uint32 minimumCpuCores = 1;
   //Can schedule on resource that resource that can be preempted, like AWS Spot Instances
   //OPTIONAL default false
   bool preemptible = 2;
-  //REQUIRED
+  //OPTIONAL
   //Minimum RAM required
   double minimumRamGb = 3;
   //REQUIRED
