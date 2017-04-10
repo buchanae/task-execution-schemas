@@ -30,21 +30,21 @@
         "parameters": [
           {
             "name": "project",
-            "description": "OPTIONAL. Filter the task list to include tasks in this project.",
+            "description": "Filter the task list to include tasks in this project.\n\nOPTIONAL.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "name_prefix",
-            "description": "OPTIONAL. Filter the list to include tasks where the name matches this prefix.\nIf unspecified, no task name filtering is done.",
+            "description": "Filter the list to include tasks where the name matches this prefix.\nIf unspecified, no task name filtering is done.\n\nOPTIONAL.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "page_size",
-            "description": "OPTIONAL. Number of tasks to return in one page.\nMust be less than 2048. Defaults to 256.",
+            "description": "Number of tasks to return in one page.\nMust be less than 2048. Defaults to 256.\n\nOPTIONAL.",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -52,7 +52,7 @@
           },
           {
             "name": "page_token",
-            "description": "OPTIONAL. Page token is used to retrieve the next page of results.\nIf unspecified, returns the first page of results.\nSee ListTasksResponse.next_page_token",
+            "description": "Page token is used to retrieve the next page of results.\nIf unspecified, returns the first page of results.\nSee ListTasksResponse.next_page_token. OPTIONAL.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -170,69 +170,66 @@
       "properties": {
         "id": {
           "type": "string",
-          "description": "Task identifier.",
-          "title": "REQUIRED"
+          "description": "Task identifier.\n\nREQUIRED."
         }
       },
       "description": "CancelTaskRequest describes a request to the CancelTask endpoint."
     },
     "tesCancelTaskResponse": {
       "type": "object",
-      "description": "CancelTaskResponse describes a response from the CancelTask endpoint.",
-      "title": "OUTPUT ONLY"
+      "description": "CancelTaskResponse describes a response from the CancelTask endpoint.\n\nOUTPUT ONLY."
     },
     "tesCreateTaskRequest": {
       "type": "object",
       "properties": {
         "name": {
           "type": "string",
-          "title": "OPTIONAL"
+          "description": "Task name.\n\nOPTIONAL."
         },
         "project": {
           "type": "string",
-          "description": "Describes the project this task is associated with.\nCommonly used for billing on cloud providers (AWS, Google Cloud, etc).",
-          "title": "OPTIONAL"
+          "description": "Project task is associated with.\n\nCommonly used for billing on cloud providers (AWS, Google Cloud, etc).\n\nOPTIONAL."
         },
         "description": {
           "type": "string",
-          "title": "OPTIONAL"
+          "description": "OPTIONAL.",
+          "title": "Task description"
         },
         "inputs": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/tesTaskParameter"
           },
-          "description": "Input files.\nInputs will be downloaded and mounted into the executor container.",
-          "title": "OPTIONAL"
+          "description": "Inputs will be downloaded and mounted into the executor container.\n\nOPTIONAL.",
+          "title": "Input files"
         },
         "outputs": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/tesTaskParameter"
           },
-          "description": "Output files.\nOutputs will be uploaded from the executor container to long-term storage.",
-          "title": "OPTIONAL"
+          "description": "Outputs will be uploaded from the executor container to long-term storage.\n\nOPTIONAL.",
+          "title": "Output files"
         },
         "resources": {
           "$ref": "#/definitions/tesResources",
-          "description": "Request that the task be run with these resources.",
-          "title": "OPTIONAL"
+          "description": "Request that the task be run with these resources.\n\nOPTIONAL.",
+          "title": "Requested resources"
         },
         "executors": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/tesExecutor"
           },
-          "description": "A list of executors to be run, sequentially.",
-          "title": "REQUIRED"
+          "description": "A list of executors to be run, sequentially.\n\nREQUIRED.",
+          "title": "Executors"
         },
         "tags": {
           "type": "object",
           "additionalProperties": {
             "type": "string"
           },
-          "description": "A key-value map of arbitrary tags.",
-          "title": "OPTIONAL"
+          "description": "A map of arbitrary tags.\n\nOPTIONAL."
         }
       },
       "description": "CreateTaskRequest describes a task to be created and run."
@@ -242,52 +239,44 @@
       "properties": {
         "image_name": {
           "type": "string",
-          "description": "Name of the container image, for example:\nubuntu\nquay.io/aptible/ubuntu\ngcr.io/my-org/my-image\netc...",
-          "title": "REQUIRED"
+          "description": "Name of the container image, for example:\nubuntu\nquay.io/aptible/ubuntu\ngcr.io/my-org/my-image\netc...\n\nREQUIRED."
         },
         "cmd": {
           "type": "array",
           "items": {
             "type": "string"
           },
-          "description": "The command to be executed.",
-          "title": "REQUIRED"
+          "description": "The command to be executed.\n\nREQUIRED."
         },
         "workdir": {
           "type": "string",
-          "description": "The working directory that the command will be executed in.\nDefaults to the directory set by the container image.",
-          "title": "OPTIONAL"
+          "description": "The working directory that the command will be executed in.\nDefaults to the directory set by the container image.\n\nOPTIONAL."
         },
         "stdin": {
           "type": "string",
-          "description": "Path inside the container to a file which will be piped\nto the command's stdin.",
-          "title": "OPTIONAL"
+          "description": "Path inside the container to a file which will be piped\nto the command's stdin.\n\nOPTIONAL."
         },
         "stdout": {
           "type": "string",
-          "description": "Path inside the container to a file where the command's\nstdout will be written to.",
-          "title": "OPTIONAL"
+          "description": "Path inside the container to a file where the command's\nstdout will be written to.\n\nOPTIONAL."
         },
         "stderr": {
           "type": "string",
-          "description": "Path inside the container to a file where the command's\nstderr will be written to.",
-          "title": "OPTIONAL"
+          "description": "Path inside the container to a file where the command's\nstderr will be written to.\n\nOPTIONAL."
         },
         "ports": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/tesPorts"
           },
-          "description": "Port to expose from within the container, blank if none.",
-          "title": "OPTIONAL"
+          "description": "Port to expose from within the container, blank if none.\n\nOPTIONAL."
         },
         "environ": {
           "type": "object",
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Enviromental variables to set within the container.",
-          "title": "OPTIONAL"
+          "description": "Enviromental variables to set within the container.\n\nOPTIONAL."
         }
       },
       "description": "Executor describes a command to run, and its environment."
@@ -297,46 +286,38 @@
       "properties": {
         "start_time": {
           "type": "string",
-          "description": "Time the executor started, in RFC 3339 format.",
-          "title": "OPTIONAL"
+          "description": "Time the executor started, in RFC 3339 format.\n\nOPTIONAL."
         },
         "end_time": {
           "type": "string",
-          "description": "Time the executor ended, in RFC 3339 format.",
-          "title": "OPTIONAL"
+          "description": "Time the executor ended, in RFC 3339 format.\n\nOPTIONAL."
         },
         "stdout": {
           "type": "string",
-          "description": "Stdout tail.\nThis is not guaranteed to be the entire log.\nImplementations determine the maximum size.",
-          "title": "OPTIONAL"
+          "description": "Stdout tail.\nThis is not guaranteed to be the entire log.\nImplementations determine the maximum size.\n\nOPTIONAL."
         },
         "stderr": {
           "type": "string",
-          "description": "Stderr tail.\nThis is not guaranteed to be the entire log.\nImplementations determine the maximum size.",
-          "title": "OPTIONAL"
+          "description": "Stderr tail.\nThis is not guaranteed to be the entire log.\nImplementations determine the maximum size.\n\nOPTIONAL."
         },
         "exit_code": {
           "type": "integer",
           "format": "int32",
-          "description": "Exit code.",
-          "title": "REQUIRED"
+          "description": "Exit code.\n\nREQUIRED."
         },
         "host_ip": {
           "type": "string",
-          "description": "IP address of host.",
-          "title": "OPTIONAL"
+          "description": "IP address of host.\n\nOPTIONAL."
         },
         "ports": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/tesPorts"
           },
-          "description": "Ports mapped between the container and host.",
-          "title": "OPTIONAL"
+          "description": "Ports mapped between the container and host.\n\nOPTIONAL."
         }
       },
-      "description": "ExecutorLog describes logging information related to an Executor.",
-      "title": "OUTPUT ONLY"
+      "description": "ExecutorLog describes logging information related to an Executor.\n\nOUTPUT ONLY."
     },
     "tesFileType": {
       "type": "string",
@@ -351,8 +332,7 @@
       "properties": {
         "id": {
           "type": "string",
-          "description": "Task identifier.",
-          "title": "REQUIRED"
+          "description": "Task identifier.\n\nREQUIRED."
         }
       },
       "description": "GetTaskRequest describes a request to the GetTask endpoint."
@@ -362,24 +342,21 @@
       "properties": {
         "project": {
           "type": "string",
-          "description": "Filter the task list to include tasks in this project.",
-          "title": "OPTIONAL"
+          "description": "Filter the task list to include tasks in this project.\n\nOPTIONAL."
         },
         "name_prefix": {
           "type": "string",
-          "description": "Filter the list to include tasks where the name matches this prefix.\nIf unspecified, no task name filtering is done.",
-          "title": "OPTIONAL"
+          "description": "Filter the list to include tasks where the name matches this prefix.\nIf unspecified, no task name filtering is done.\n\nOPTIONAL."
         },
         "page_size": {
           "type": "integer",
           "format": "int64",
-          "description": "Number of tasks to return in one page.\nMust be less than 2048. Defaults to 256.",
-          "title": "OPTIONAL"
+          "description": "Number of tasks to return in one page.\nMust be less than 2048. Defaults to 256.\n\nOPTIONAL."
         },
         "page_token": {
           "type": "string",
-          "description": "Page token is used to retrieve the next page of results.\nIf unspecified, returns the first page of results.\nSee ListTasksResponse.next_page_token",
-          "title": "OPTIONAL"
+          "description": "OPTIONAL.",
+          "title": "Page token is used to retrieve the next page of results.\nIf unspecified, returns the first page of results.\nSee ListTasksResponse.next_page_token"
         }
       },
       "description": "ListTasksRequest describes a request to the ListTasks service endpoint."
@@ -392,40 +369,35 @@
           "items": {
             "$ref": "#/definitions/tesTaskDesc"
           },
-          "description": "List of lightweight task descriptions.",
-          "title": "REQUIRED"
+          "description": "List of lightweight task descriptions.\n\nREQUIRED."
         },
         "next_page_token": {
           "type": "string",
-          "description": "Token used to return the next page of results.\nSee TaskListRequest.next_page_token",
-          "title": "OPTIONAL"
+          "description": "OPTIONAL.",
+          "title": "Token used to return the next page of results.\nSee TaskListRequest.next_page_token"
         }
       },
-      "description": "ListTasksResponse describes a response from the ListTasks endpoint.",
-      "title": "OUTPUT ONLY"
+      "description": "ListTasksResponse describes a response from the ListTasks endpoint.\n\nOUTPUT ONLY"
     },
     "tesOutputFileLog": {
       "type": "object",
       "properties": {
         "url": {
           "type": "string",
-          "description": "URL of the file in storage, e.g. s3://bucket/file.txt",
-          "title": "REQUIRED"
+          "description": "REQUIRED.",
+          "title": "URL of the file in storage, e.g. s3://bucket/file.txt"
         },
         "path": {
           "type": "string",
-          "description": "Path of the file inside the container.",
-          "title": "REQUIRED"
+          "description": "Path of the file inside the container.\n\nREQUIRED."
         },
         "size_bytes": {
           "type": "string",
           "format": "int64",
-          "description": "Size of the file in bytes.",
-          "title": "REQUIRED"
+          "description": "Size of the file in bytes.\n\nREQUIRED."
         }
       },
-      "description": "OutputFileLog describes a single output file. This describes\nfile details after the task has completed successfully,\nfor logging purposes.",
-      "title": "OUTPUT ONLY"
+      "description": "OutputFileLog describes a single output file. This describes\nfile details after the task has completed successfully,\nfor logging purposes.\n\nOUTPUT ONLY."
     },
     "tesPorts": {
       "type": "object",
@@ -433,14 +405,12 @@
         "container": {
           "type": "integer",
           "format": "int64",
-          "description": "Port number opened inside the container.",
-          "title": "REQUIRED"
+          "description": "Port number opened inside the container.\n\nREQUIRED."
         },
         "host": {
           "type": "integer",
           "format": "int64",
-          "description": "Port number opened on the host. Must be greater than 1024.\nDefaults to 0, which assigns a random port on the host.",
-          "title": "OPTIONAL"
+          "description": "Port number opened on the host. Must be greater than 1024.\nDefaults to 0, which assigns a random port on the host.\n\nOPTIONAL."
         }
       },
       "description": "Ports describes the port mapping between the container and host."
@@ -451,36 +421,34 @@
         "cpu_cores": {
           "type": "integer",
           "format": "int64",
-          "description": "Requested number of CPUs",
-          "title": "OPTIONAL"
+          "description": "OPTIONAL.",
+          "title": "Requested number of CPUs"
         },
         "preemptible": {
           "type": "boolean",
           "format": "boolean",
-          "description": "Is the task allowed to run on preemptible compute instances (e.g. AWS Spot)?",
-          "title": "OPTIONAL"
+          "description": "OPTIONAL.",
+          "title": "Is the task allowed to run on preemptible compute instances (e.g. AWS Spot)?"
         },
         "ram_gb": {
           "type": "number",
           "format": "double",
-          "description": "Requested RAM required in gigabytes (GB)",
-          "title": "OPTIONAL"
+          "description": "OPTIONAL.",
+          "title": "Requested RAM required in gigabytes (GB)"
         },
         "volumes": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/tesVolume"
           },
-          "description": "Volumes to be mounted into the container.",
-          "title": "OPTIONAL"
+          "description": "Volumes to be mounted into the container.\n\nOPTIONAL."
         },
         "zones": {
           "type": "array",
           "items": {
             "type": "string"
           },
-          "description": "Request that the task be run in these compute zones.",
-          "title": "OPTIONAL"
+          "description": "Request that the task be run in these compute zones.\n\nOPTIONAL."
         }
       },
       "description": "Resources describes the resources requested by a task."
@@ -493,12 +461,11 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "System specific key/value pairs\nExample for a shared file system based storage system:\nstorageType=sharedFile, baseDir=/path/to/shared/directory",
-          "title": "OPTIONAL"
+          "description": "OPTIONAL.",
+          "title": "System specific key/value pairs\nExample for a shared file system based storage system:\nstorageType=sharedFile, baseDir=/path/to/shared/directory"
         }
       },
-      "description": "ServiceInfo describes information about the service,\nsuch as storage details, resource availability,\nand other documentation.",
-      "title": "OUTPUT ONLY"
+      "description": "ServiceInfo describes information about the service,\nsuch as storage details, resource availability,\nand other documentation.\n\nOUTPUT ONLY."
     },
     "tesServiceInfoRequest": {
       "type": "object",
@@ -518,67 +485,61 @@
         "CANCELED"
       ],
       "default": "UNKNOWN",
-      "description": "Task states.\n\n - PAUSED: An implementation *may* have the ability to pause a task,\nbut this is not required.",
-      "title": "OUTPUT ONLY"
+      "description": "Task states.\n\nOUTPUT ONLY.\n\n - PAUSED: An implementation *may* have the ability to pause a task,\nbut this is not required."
     },
     "tesTask": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string",
-          "description": "Task identifier.",
-          "title": "REQUIRED"
+          "description": "Task identifier.\n\nREQUIRED."
         },
         "metadata": {
           "type": "object",
           "additionalProperties": {
             "type": "string"
           },
-          "title": "REQUIRED"
+          "description": "REQUIRED."
         },
         "request": {
           "$ref": "#/definitions/tesCreateTaskRequest",
-          "title": "REQUIRED"
+          "description": "REQUIRED."
         },
         "state": {
           "$ref": "#/definitions/tesState",
-          "title": "REQUIRED"
+          "description": "REQUIRED."
         },
         "logs": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/tesTaskLog"
           },
-          "description": "Task logging information.\nNormally, this will contain only one entry, but in the case where\na task fails and is retried, an entry will be appended to this list.",
-          "title": "REQUIRED"
+          "description": "Task logging information.\nNormally, this will contain only one entry, but in the case where\na task fails and is retried, an entry will be appended to this list.\n\nREQUIRED."
         },
         "outputs": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/tesOutputFileLog"
           },
-          "description": "Information about all output files. Directory outputs are\nflattened into separate items.",
-          "title": "REQUIRED"
+          "description": "Information about all output files. Directory outputs are\nflattened into separate items.\n\nREQUIRED."
         }
       },
-      "description": "Task describes an instance of a task.",
-      "title": "OUTPUT ONLY"
+      "description": "Task describes an instance of a task.\n\nOUTPUT ONLY.",
+      "title": "Task"
     },
     "tesTaskDesc": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string",
-          "description": "Task identifier.",
-          "title": "REQUIRED"
+          "description": "Task identifier.\n\nREQUIRED."
         },
         "state": {
           "$ref": "#/definitions/tesState",
-          "title": "REQUIRED"
+          "description": "REQUIRED."
         }
       },
-      "description": "TaskDesc is a lightweight description of a task, which is returned\nby the ListTasks endpoint.",
-      "title": "OUTPUT ONLY"
+      "description": "TaskDesc is a lightweight description of a task, which is returned\nby the ListTasks endpoint.\n\nOUTPUT ONLY"
     },
     "tesTaskLog": {
       "type": "object",
@@ -588,67 +549,60 @@
           "items": {
             "$ref": "#/definitions/tesExecutorLog"
           },
-          "description": "Logs for each executor",
-          "title": "REQUIRED"
+          "description": "REQUIRED.",
+          "title": "Logs for each executor"
         },
         "metadata": {
           "type": "object",
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Arbitrary logging metadata included by the implementation.",
-          "title": "OPTIONAL"
+          "description": "Arbitrary logging metadata included by the implementation.\n\nOPTIONAL."
         },
         "start_time": {
           "type": "string",
-          "description": "When the task started, in RFC 3339 format.",
-          "title": "OPTIONAL"
+          "description": "When the task started, in RFC 3339 format.\n\nREQUIRED."
         },
         "end_time": {
           "type": "string",
-          "description": "When the task ended, in RFC 3339 format.",
-          "title": "OPTIONAL"
+          "description": "When the task ended, in RFC 3339 format.\n\nREQUIRED."
         }
       },
-      "description": "TaskLog describes logging information related to a Task.",
-      "title": "OUTPUT ONLY"
+      "description": "TaskLog describes logging information related to a Task.\n\nOUTPUT ONLY."
     },
     "tesTaskParameter": {
       "type": "object",
       "properties": {
         "name": {
           "type": "string",
-          "title": "OPTIONAL"
+          "description": "OPTIONAL."
         },
         "description": {
           "type": "string",
-          "title": "OPTIONAL"
+          "description": "OPTIONAL."
         },
         "url": {
           "type": "string",
-          "description": "URL in long term storage, for example:\ns3://my-object-store/file1\ngs://my-bucket/file2\nfile:///path/to/my/file\n/path/to/my/file\netc...",
-          "title": "REQUIRED"
+          "description": "URL in long term storage, for example:\ns3://my-object-store/file1\ngs://my-bucket/file2\nfile:///path/to/my/file\n/path/to/my/file\netc...\n\nREQUIRED."
         },
         "path": {
           "type": "string",
-          "description": "Path of the file inside the container.",
-          "title": "REQUIRED"
+          "description": "Path of the file inside the container.\n\nREQUIRED."
         },
         "type": {
           "$ref": "#/definitions/tesFileType",
-          "description": "Type of the file, FILE or DIRECTORY",
-          "title": "REQUIRED"
+          "description": "REQUIRED.",
+          "title": "Type of the file, FILE or DIRECTORY"
         },
         "create": {
           "type": "boolean",
           "format": "boolean",
-          "description": "If true, this path will be created before the task starts running.\nThis helps tasks create output directories which the task will\nwrite to.",
-          "title": "OPTIONAL"
+          "description": "If true, this path will be created before the task starts running.\nThis helps tasks create output directories which the task will\nwrite to.\n\nOPTIONAL."
         },
         "contents": {
           "type": "string",
-          "description": "File contents literal. \nImplementations should support a minimum of 128 KiB in this field and may define its own maximum.\nUTF-8 encoded",
-          "title": "OPTIONAL"
+          "description": "OPTIONAL.",
+          "title": "File contents literal. \nImplementations should support a minimum of 128 KiB in this field and may define its own maximum.\nUTF-8 encoded"
         }
       },
       "description": "TaskParameter describes input and output files for a Task."
@@ -658,18 +612,16 @@
       "properties": {
         "name": {
           "type": "string",
-          "title": "OPTIONAL"
+          "description": "OPTIONAL."
         },
         "size_gb": {
           "type": "number",
           "format": "double",
-          "description": "Requested disk size in gigabytes (GB)",
-          "title": "REQUIRED"
+          "description": "Requested disk size in gigabytes (GB).\n\nREQUIRED."
         },
         "mount_point": {
           "type": "string",
-          "description": "Path inside the container that the volume will be mounted to.",
-          "title": "REQUIRED"
+          "description": "Path inside the container that the volume will be mounted to.\n\nREQUIRED."
         }
       },
       "description": "Volume describes a volume (i.e. directory) which will be\nmounted into an executor/container."

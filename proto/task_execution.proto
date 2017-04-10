@@ -8,43 +8,54 @@ import "google/api/annotations.proto";
 // CreateTaskRequest describes a task to be created and run.
 message CreateTaskRequest {
 
-  // OPTIONAL
+  // Task name.
+  //
+  // OPTIONAL.
   string name = 1;
 
-  // OPTIONAL
+  // Project task is associated with.
   //
-  // Describes the project this task is associated with.
   // Commonly used for billing on cloud providers (AWS, Google Cloud, etc).
+  //
+  // OPTIONAL.
   string project = 2;
 
-  // OPTIONAL
+  // Task description
+  //
+  // OPTIONAL.
   string description = 3;
 
-  // OPTIONAL
+  // Input files
   //
-  // Input files.
   // Inputs will be downloaded and mounted into the executor container.
+  //
+  // OPTIONAL.
   repeated TaskParameter inputs = 4;
 
-  // OPTIONAL
+  // Output files
   //
-  // Output files.
   // Outputs will be uploaded from the executor container to long-term storage.
+  //
+  // OPTIONAL.
   repeated TaskParameter outputs = 5;
 
-  // OPTIONAL
+  // Requested resources
   //
   // Request that the task be run with these resources.
+  //
+  // OPTIONAL.
   Resources resources = 6;
 
-  // REQUIRED
+  // Executors
   //
   // A list of executors to be run, sequentially.
+  //
+  // REQUIRED.
   repeated Executor executors = 8;
 
-  // OPTIONAL
+  // A map of arbitrary tags.
   //
-  // A key-value map of arbitrary tags.
+  // OPTIONAL.
   map<string, string> tags = 9;
 }
 
@@ -56,111 +67,111 @@ enum FileType {
 // TaskParameter describes input and output files for a Task.
 message TaskParameter {
 
-  // OPTIONAL
+  // OPTIONAL.
   string name = 1;
 
-  // OPTIONAL
+  // OPTIONAL.
   string description = 2;
 
-  // REQUIRED
-  //
   // URL in long term storage, for example:
   // s3://my-object-store/file1
   // gs://my-bucket/file2
   // file:///path/to/my/file
   // /path/to/my/file
   // etc...
+  //
+  // REQUIRED.
   string url = 3;
 
-  // REQUIRED
-  //
   // Path of the file inside the container.
+  //
+  // REQUIRED.
   string path = 4;
 
-  // REQUIRED
-  //
   // Type of the file, FILE or DIRECTORY
+  //
+  // REQUIRED.
   FileType type = 5;
 
-  // OPTIONAL
-  //
   // If true, this path will be created before the task starts running.
   // This helps tasks create output directories which the task will
   // write to.
+  //
+  // OPTIONAL.
   bool create = 6;
 
-  // OPTIONAL
-  //
   // File contents literal. 
   // Implementations should support a minimum of 128 KiB in this field and may define its own maximum.
   // UTF-8 encoded
+  //
+  // OPTIONAL.
   string contents = 7;
 }
 
 // Ports describes the port mapping between the container and host.
 message Ports {
 
-  // REQUIRED 
-  //
   // Port number opened inside the container.
+  //
+  // REQUIRED.
   uint32 container = 1;
 
-  // OPTIONAL 
-  //
   // Port number opened on the host. Must be greater than 1024.
   // Defaults to 0, which assigns a random port on the host.
+  //
+  // OPTIONAL.
   uint32 host = 2;
 }
 
 // Executor describes a command to run, and its environment.
 message Executor {
 
-  // REQUIRED
-  //
   // Name of the container image, for example:
   // ubuntu
   // quay.io/aptible/ubuntu
   // gcr.io/my-org/my-image
   // etc...
+  //
+  // REQUIRED.
   string image_name = 1;
 
-  // REQUIRED
-  //
   // The command to be executed.
+  //
+  // REQUIRED.
   repeated string cmd = 2;
 
-  // OPTIONAL
-  //
   // The working directory that the command will be executed in.
   // Defaults to the directory set by the container image.
+  //
+  // OPTIONAL.
   string workdir = 3;
 
-  // OPTIONAL
-  //
   // Path inside the container to a file which will be piped
   // to the command's stdin.
+  //
+  // OPTIONAL.
   string stdin = 6;
 
-  // OPTIONAL
-  //
   // Path inside the container to a file where the command's
   // stdout will be written to.
+  //
+  // OPTIONAL.
   string stdout = 4;
 
-  // OPTIONAL
-  //
   // Path inside the container to a file where the command's
   // stderr will be written to.
+  //
+  // OPTIONAL.
   string stderr = 5;
 
-  // OPTIONAL
-  //
   // Port to expose from within the container, blank if none.
+  //
+  // OPTIONAL.
   repeated Ports ports = 7;
 
-  // OPTIONAL
-  //
   // Enviromental variables to set within the container.
+  //
+  // OPTIONAL.
   map<string,string> environ = 8;
 }
 
@@ -168,189 +179,190 @@ message Executor {
 // mounted into an executor/container.
 message Volume {
 
-  // OPTIONAL
+  // OPTIONAL.
   string name = 1;
 
-  // REQUIRED
+  // Requested disk size in gigabytes (GB).
   //
-  // Requested disk size in gigabytes (GB)
+  // REQUIRED.
   double size_gb = 2;
 
-  // REQUIRED
-  //
   // Path inside the container that the volume will be mounted to.
+  //
+  // REQUIRED.
   string mount_point = 6;
 }
 
 // Resources describes the resources requested by a task.
 message Resources {
 
-  // OPTIONAL
-  //
   // Requested number of CPUs
+  //
+  // OPTIONAL.
   uint32 cpu_cores = 1;
 
-  // OPTIONAL
-  //
   // Is the task allowed to run on preemptible compute instances (e.g. AWS Spot)?
+  //
+  // OPTIONAL.
   bool preemptible = 2;
 
-  // OPTIONAL
-  //
   // Requested RAM required in gigabytes (GB)
+  //
+  // OPTIONAL.
   double ram_gb = 3;
 
-  // OPTIONAL
-  //
   // Volumes to be mounted into the container.
+  //
+  // OPTIONAL.
   repeated Volume volumes = 4;
 
-  // OPTIONAL
-  //
   // Request that the task be run in these compute zones.
+  //
+  // OPTIONAL.
   repeated string zones = 5;
 }
 
 // GetTaskRequest describes a request to the GetTask endpoint.
 message GetTaskRequest {
-  // REQUIRED
-  //
+
   // Task identifier.
+  //
+  // REQUIRED.
   string id = 1;
 }
 
-
-
-// OUTPUT ONLY
+// Task
 //
 // Task describes an instance of a task.
+//
+// OUTPUT ONLY.
 message Task {
 
-  // REQUIRED
-  //
   // Task identifier.
+  //
+  // REQUIRED.
   string id = 1;
 
-  // REQUIRED
+  // REQUIRED.
   map<string,string> metadata = 2;
 
-  // REQUIRED
+  // REQUIRED.
   CreateTaskRequest request = 3;
 
-  // REQUIRED
+  // REQUIRED.
   State state = 4;
 
-  // REQUIRED
-  //
   // Task logging information.
   // Normally, this will contain only one entry, but in the case where
   // a task fails and is retried, an entry will be appended to this list.
+  //
+  // REQUIRED.
   repeated TaskLog logs = 5;
 
-  // REQUIRED
-  //
   // Information about all output files. Directory outputs are
   // flattened into separate items.
+  //
+  // REQUIRED.
   repeated OutputFileLog outputs = 6;
 }
 
-// OUTPUT ONLY
-//
 // TaskLog describes logging information related to a Task.
+//
+// OUTPUT ONLY.
 message TaskLog {
 
-  // REQUIRED
-  //
   // Logs for each executor
+  //
+  // REQUIRED.
   repeated ExecutorLog logs = 1;
 
-  // OPTIONAL
-  //
   // Arbitrary logging metadata included by the implementation.
+  //
+  // OPTIONAL.
   map<string, string> metadata = 2;
 
-  // OPTIONAL
-  //
   // When the task started, in RFC 3339 format.
+  //
+  // REQUIRED.
   string start_time = 3;
 
-  // OPTIONAL
-  //
   // When the task ended, in RFC 3339 format.
+  //
+  // REQUIRED.
   string end_time = 4;
 }
 
-// OUTPUT ONLY
-//
 // ExecutorLog describes logging information related to an Executor.
+//
+// OUTPUT ONLY.
 message ExecutorLog {
 
-  // OPTIONAL
-  //
   // Time the executor started, in RFC 3339 format.
+  //
+  // OPTIONAL.
   string start_time = 2;
 
-  // OPTIONAL
-  //
   // Time the executor ended, in RFC 3339 format.
+  //
+  // OPTIONAL.
   string end_time = 3;
 
-  // OPTIONAL
-  //
   // Stdout tail.
   // This is not guaranteed to be the entire log.
   // Implementations determine the maximum size.
+  //
+  // OPTIONAL.
   string stdout = 4;
 
-  // OPTIONAL
-  //
   // Stderr tail.
   // This is not guaranteed to be the entire log.
   // Implementations determine the maximum size.
+  //
+  // OPTIONAL.
   string stderr = 5;
 
-  // REQUIRED
-  //
   // Exit code.
+  //
+  // REQUIRED.
   int32 exit_code = 6;
 
-  // OPTIONAL
-  //
   // IP address of host.
+  //
+  // OPTIONAL.
   string host_ip = 7;
 
-  // OPTIONAL
-  //
   // Ports mapped between the container and host.
+  //
+  // OPTIONAL.
   repeated Ports ports = 8;
 }
 
-// OUTPUT ONLY
-//
 // OutputFileLog describes a single output file. This describes
 // file details after the task has completed successfully,
 // for logging purposes.
+//
+// OUTPUT ONLY.
 message OutputFileLog {
 
-  // REQUIRED
-  //
   // URL of the file in storage, e.g. s3://bucket/file.txt
+  //
+  // REQUIRED.
   string url = 1;
 
-  // REQUIRED
-  //
   // Path of the file inside the container.
+  //
+  // REQUIRED.
   string path = 2;
 
-  // REQUIRED
-  //
   // Size of the file in bytes.
+  //
+  // REQUIRED.
   int64 size_bytes = 3;
 }
 
-// OUTPUT ONLY
-//
 // Task states.
+//
+// OUTPUT ONLY.
 enum State {
   UNKNOWN = 0;
   QUEUED = 1;
@@ -368,91 +380,91 @@ enum State {
 // ListTasksRequest describes a request to the ListTasks service endpoint.
 message ListTasksRequest {
 
-  // OPTIONAL
-  //
   // Filter the task list to include tasks in this project.
+  //
+  // OPTIONAL.
   string project = 1;
 
-  // OPTIONAL
-  //
   // Filter the list to include tasks where the name matches this prefix.
   // If unspecified, no task name filtering is done.
+  //
+  // OPTIONAL.
   string name_prefix	= 2;
 
-  // OPTIONAL
-  //
   // Number of tasks to return in one page.
   // Must be less than 2048. Defaults to 256.
+  //
+  // OPTIONAL.
   uint32 page_size = 3;
 
-  // OPTIONAL
-  //
   // Page token is used to retrieve the next page of results.
   // If unspecified, returns the first page of results.
   // See ListTasksResponse.next_page_token
+  //
+  // OPTIONAL.
   string page_token = 4;
 }
 
-// OUTPUT ONLY
-//
 // ListTasksResponse describes a response from the ListTasks endpoint.
+//
+// OUTPUT ONLY
 message ListTasksResponse {
 
-  // REQUIRED
-  //
   // List of lightweight task descriptions.
+  //
+  // REQUIRED.
   repeated TaskDesc tasks = 1;
 
-  // OPTIONAL
-  //
   // Token used to return the next page of results.
   // See TaskListRequest.next_page_token
+  //
+  // OPTIONAL.
   string next_page_token = 2;
 }
 
-// OUTPUT ONLY
-//
 // TaskDesc is a lightweight description of a task, which is returned
 // by the ListTasks endpoint.
+//
+// OUTPUT ONLY
 message TaskDesc {
 
-  // REQUIRED
-  //
   // Task identifier.
+  //
+  // REQUIRED.
   string id = 1;
 
-  // REQUIRED
+  // REQUIRED.
   State state = 2;
 }
 
 // CancelTaskRequest describes a request to the CancelTask endpoint.
 message CancelTaskRequest {
-  // REQUIRED
-  //
   // Task identifier.
+  //
+  // REQUIRED.
   string id = 1;
 }
 
-// OUTPUT ONLY
-//
 // CancelTaskResponse describes a response from the CancelTask endpoint.
+//
+// OUTPUT ONLY.
 message CancelTaskResponse {}
 
 // ServiceInfoRequest describes a request to the ServiceInfo endpoint.
 message ServiceInfoRequest {}
 
-// OUTPUT ONLY
-//
 // ServiceInfo describes information about the service,
 // such as storage details, resource availability,
 // and other documentation.
+//
+// OUTPUT ONLY.
 message ServiceInfo {
 
-  // OPTIONAL
-  //
   // System specific key/value pairs
   // Example for a shared file system based storage system:
   // storageType=sharedFile, baseDir=/path/to/shared/directory
+  //
+  // OPTIONAL.
   map<string,string> storage_config = 1;
 }
 
