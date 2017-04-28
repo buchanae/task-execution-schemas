@@ -1,0 +1,643 @@
+[
+  {
+    "values": [
+      {
+        "name": "FILE", 
+        "value": 0
+      }, 
+      {
+        "name": "DIRECTORY", 
+        "value": 1
+      }
+    ], 
+    "name": "FileType", 
+    "pytype": "<class 'google.protobuf.descriptor_pb2.EnumDescriptorProto'>", 
+    "package": "tes", 
+    "type": "Enum", 
+    "filename": "task_execution.proto"
+  }, 
+  {
+    "values": [
+      {
+        "name": "UNKNOWN", 
+        "value": 0
+      }, 
+      {
+        "name": "QUEUED", 
+        "value": 1
+      }, 
+      {
+        "name": "INITIALIZING", 
+        "value": 2
+      }, 
+      {
+        "name": "RUNNING", 
+        "value": 3
+      }, 
+      {
+        "name": "PAUSED", 
+        "value": 4
+      }, 
+      {
+        "name": "COMPLETE", 
+        "value": 5
+      }, 
+      {
+        "name": "ERROR", 
+        "value": 6
+      }, 
+      {
+        "name": "SYSTEM_ERROR", 
+        "value": 7
+      }, 
+      {
+        "name": "CANCELED", 
+        "value": 8
+      }
+    ], 
+    "name": "State", 
+    "pytype": "<class 'google.protobuf.descriptor_pb2.EnumDescriptorProto'>", 
+    "package": "tes", 
+    "type": "Enum", 
+    "filename": "task_execution.proto"
+  }, 
+  {
+    "values": [
+      {
+        "name": "MINIMAL", 
+        "value": 0
+      }, 
+      {
+        "name": "BASIC", 
+        "value": 1
+      }, 
+      {
+        "name": "FULL", 
+        "value": 2
+      }
+    ], 
+    "name": "TaskView", 
+    "pytype": "<class 'google.protobuf.descriptor_pb2.EnumDescriptorProto'>", 
+    "package": "tes", 
+    "type": "Enum", 
+    "filename": "task_execution.proto"
+  }, 
+  {
+    "name": "Task", 
+    "pytype": "<class 'google.protobuf.descriptor_pb2.DescriptorProto'>", 
+    "package": "tes", 
+    "type": "Message", 
+    "properties": [
+      {
+        "type": 9, 
+        "name": "id"
+      }, 
+      {
+        "type": 14, 
+        "name": "state"
+      }, 
+      {
+        "type": 9, 
+        "name": "name"
+      }, 
+      {
+        "type": 9, 
+        "name": "project"
+      }, 
+      {
+        "type": 9, 
+        "name": "description"
+      }, 
+      {
+        "type": 11, 
+        "name": "inputs"
+      }, 
+      {
+        "type": 11, 
+        "name": "outputs"
+      }, 
+      {
+        "type": 11, 
+        "name": "resources"
+      }, 
+      {
+        "type": 11, 
+        "name": "executors"
+      }, 
+      {
+        "type": 9, 
+        "name": "volumes"
+      }, 
+      {
+        "type": 11, 
+        "name": "tags"
+      }, 
+      {
+        "type": 11, 
+        "name": "logs"
+      }
+    ], 
+    "filename": "task_execution.proto"
+  }, 
+  {
+    "filename": "task_execution.proto", 
+    "name": "DUNNO", 
+    "pytype": "<type 'tuple'>", 
+    "package": "tes"
+  }, 
+  {
+    "filename": "task_execution.proto", 
+    "name": "DUNNO", 
+    "pytype": "<type 'tuple'>", 
+    "package": "tes"
+  }, 
+  {
+    "filename": "task_execution.proto", 
+    "name": "DUNNO", 
+    "pytype": "<type 'tuple'>", 
+    "package": "tes"
+  }, 
+  {
+    "filename": "task_execution.proto", 
+    "name": "DUNNO", 
+    "pytype": "<type 'tuple'>", 
+    "package": "tes"
+  }, 
+  {
+    "filename": "task_execution.proto", 
+    "name": "DUNNO", 
+    "pytype": "<type 'tuple'>", 
+    "package": "tes"
+  }, 
+  {
+    "filename": "task_execution.proto", 
+    "name": "DUNNO", 
+    "pytype": "<type 'tuple'>", 
+    "package": "tes"
+  }, 
+  {
+    "filename": "task_execution.proto", 
+    "name": "DUNNO", 
+    "pytype": "<type 'tuple'>", 
+    "package": "tes"
+  }, 
+  {
+    "name": "TaskParameter", 
+    "pytype": "<class 'google.protobuf.descriptor_pb2.DescriptorProto'>", 
+    "package": "tes", 
+    "type": "Message", 
+    "properties": [
+      {
+        "type": 9, 
+        "name": "name"
+      }, 
+      {
+        "type": 9, 
+        "name": "description"
+      }, 
+      {
+        "type": 9, 
+        "name": "url"
+      }, 
+      {
+        "type": 9, 
+        "name": "path"
+      }, 
+      {
+        "type": 14, 
+        "name": "type"
+      }, 
+      {
+        "type": 9, 
+        "name": "contents"
+      }
+    ], 
+    "filename": "task_execution.proto"
+  }, 
+  {
+    "name": "Ports", 
+    "pytype": "<class 'google.protobuf.descriptor_pb2.DescriptorProto'>", 
+    "package": "tes", 
+    "type": "Message", 
+    "properties": [
+      {
+        "type": 13, 
+        "name": "container"
+      }, 
+      {
+        "type": 13, 
+        "name": "host"
+      }
+    ], 
+    "filename": "task_execution.proto"
+  }, 
+  {
+    "name": "Executor", 
+    "pytype": "<class 'google.protobuf.descriptor_pb2.DescriptorProto'>", 
+    "package": "tes", 
+    "type": "Message", 
+    "properties": [
+      {
+        "type": 9, 
+        "name": "image_name"
+      }, 
+      {
+        "type": 9, 
+        "name": "cmd"
+      }, 
+      {
+        "type": 9, 
+        "name": "workdir"
+      }, 
+      {
+        "type": 9, 
+        "name": "stdin"
+      }, 
+      {
+        "type": 9, 
+        "name": "stdout"
+      }, 
+      {
+        "type": 9, 
+        "name": "stderr"
+      }, 
+      {
+        "type": 11, 
+        "name": "ports"
+      }, 
+      {
+        "type": 11, 
+        "name": "environ"
+      }
+    ], 
+    "filename": "task_execution.proto"
+  }, 
+  {
+    "filename": "task_execution.proto", 
+    "name": "DUNNO", 
+    "pytype": "<type 'tuple'>", 
+    "package": "tes"
+  }, 
+  {
+    "filename": "task_execution.proto", 
+    "name": "DUNNO", 
+    "pytype": "<type 'tuple'>", 
+    "package": "tes"
+  }, 
+  {
+    "filename": "task_execution.proto", 
+    "name": "DUNNO", 
+    "pytype": "<type 'tuple'>", 
+    "package": "tes"
+  }, 
+  {
+    "filename": "task_execution.proto", 
+    "name": "DUNNO", 
+    "pytype": "<type 'tuple'>", 
+    "package": "tes"
+  }, 
+  {
+    "filename": "task_execution.proto", 
+    "name": "DUNNO", 
+    "pytype": "<type 'tuple'>", 
+    "package": "tes"
+  }, 
+  {
+    "filename": "task_execution.proto", 
+    "name": "DUNNO", 
+    "pytype": "<type 'tuple'>", 
+    "package": "tes"
+  }, 
+  {
+    "filename": "task_execution.proto", 
+    "name": "DUNNO", 
+    "pytype": "<type 'tuple'>", 
+    "package": "tes"
+  }, 
+  {
+    "filename": "task_execution.proto", 
+    "name": "DUNNO", 
+    "pytype": "<type 'tuple'>", 
+    "package": "tes"
+  }, 
+  {
+    "filename": "task_execution.proto", 
+    "name": "DUNNO", 
+    "pytype": "<type 'tuple'>", 
+    "package": "tes"
+  }, 
+  {
+    "filename": "task_execution.proto", 
+    "name": "DUNNO", 
+    "pytype": "<type 'tuple'>", 
+    "package": "tes"
+  }, 
+  {
+    "filename": "task_execution.proto", 
+    "name": "DUNNO", 
+    "pytype": "<type 'tuple'>", 
+    "package": "tes"
+  }, 
+  {
+    "name": "Resources", 
+    "pytype": "<class 'google.protobuf.descriptor_pb2.DescriptorProto'>", 
+    "package": "tes", 
+    "type": "Message", 
+    "properties": [
+      {
+        "type": 13, 
+        "name": "cpu_cores"
+      }, 
+      {
+        "type": 8, 
+        "name": "preemptible"
+      }, 
+      {
+        "type": 1, 
+        "name": "ram_gb"
+      }, 
+      {
+        "type": 1, 
+        "name": "size_gb"
+      }, 
+      {
+        "type": 9, 
+        "name": "zones"
+      }
+    ], 
+    "filename": "task_execution.proto"
+  }, 
+  {
+    "name": "TaskLog", 
+    "pytype": "<class 'google.protobuf.descriptor_pb2.DescriptorProto'>", 
+    "package": "tes", 
+    "type": "Message", 
+    "properties": [
+      {
+        "type": 11, 
+        "name": "logs"
+      }, 
+      {
+        "type": 11, 
+        "name": "metadata"
+      }, 
+      {
+        "type": 9, 
+        "name": "start_time"
+      }, 
+      {
+        "type": 9, 
+        "name": "end_time"
+      }, 
+      {
+        "type": 11, 
+        "name": "outputs"
+      }
+    ], 
+    "filename": "task_execution.proto"
+  }, 
+  {
+    "filename": "task_execution.proto", 
+    "name": "DUNNO", 
+    "pytype": "<type 'tuple'>", 
+    "package": "tes"
+  }, 
+  {
+    "filename": "task_execution.proto", 
+    "name": "DUNNO", 
+    "pytype": "<type 'tuple'>", 
+    "package": "tes"
+  }, 
+  {
+    "filename": "task_execution.proto", 
+    "name": "DUNNO", 
+    "pytype": "<type 'tuple'>", 
+    "package": "tes"
+  }, 
+  {
+    "filename": "task_execution.proto", 
+    "name": "DUNNO", 
+    "pytype": "<type 'tuple'>", 
+    "package": "tes"
+  }, 
+  {
+    "filename": "task_execution.proto", 
+    "name": "DUNNO", 
+    "pytype": "<type 'tuple'>", 
+    "package": "tes"
+  }, 
+  {
+    "filename": "task_execution.proto", 
+    "name": "DUNNO", 
+    "pytype": "<type 'tuple'>", 
+    "package": "tes"
+  }, 
+  {
+    "filename": "task_execution.proto", 
+    "name": "DUNNO", 
+    "pytype": "<type 'tuple'>", 
+    "package": "tes"
+  }, 
+  {
+    "filename": "task_execution.proto", 
+    "name": "DUNNO", 
+    "pytype": "<type 'tuple'>", 
+    "package": "tes"
+  }, 
+  {
+    "filename": "task_execution.proto", 
+    "name": "DUNNO", 
+    "pytype": "<type 'tuple'>", 
+    "package": "tes"
+  }, 
+  {
+    "filename": "task_execution.proto", 
+    "name": "DUNNO", 
+    "pytype": "<type 'tuple'>", 
+    "package": "tes"
+  }, 
+  {
+    "name": "ExecutorLog", 
+    "pytype": "<class 'google.protobuf.descriptor_pb2.DescriptorProto'>", 
+    "package": "tes", 
+    "type": "Message", 
+    "properties": [
+      {
+        "type": 9, 
+        "name": "start_time"
+      }, 
+      {
+        "type": 9, 
+        "name": "end_time"
+      }, 
+      {
+        "type": 9, 
+        "name": "stdout"
+      }, 
+      {
+        "type": 9, 
+        "name": "stderr"
+      }, 
+      {
+        "type": 5, 
+        "name": "exit_code"
+      }, 
+      {
+        "type": 9, 
+        "name": "host_ip"
+      }, 
+      {
+        "type": 11, 
+        "name": "ports"
+      }
+    ], 
+    "filename": "task_execution.proto"
+  }, 
+  {
+    "name": "OutputFileLog", 
+    "pytype": "<class 'google.protobuf.descriptor_pb2.DescriptorProto'>", 
+    "package": "tes", 
+    "type": "Message", 
+    "properties": [
+      {
+        "type": 9, 
+        "name": "url"
+      }, 
+      {
+        "type": 9, 
+        "name": "path"
+      }, 
+      {
+        "type": 3, 
+        "name": "size_bytes"
+      }
+    ], 
+    "filename": "task_execution.proto"
+  }, 
+  {
+    "name": "CreateTaskResponse", 
+    "pytype": "<class 'google.protobuf.descriptor_pb2.DescriptorProto'>", 
+    "package": "tes", 
+    "type": "Message", 
+    "properties": [
+      {
+        "type": 9, 
+        "name": "id"
+      }
+    ], 
+    "filename": "task_execution.proto"
+  }, 
+  {
+    "name": "GetTaskRequest", 
+    "pytype": "<class 'google.protobuf.descriptor_pb2.DescriptorProto'>", 
+    "package": "tes", 
+    "type": "Message", 
+    "properties": [
+      {
+        "type": 9, 
+        "name": "id"
+      }, 
+      {
+        "type": 14, 
+        "name": "view"
+      }
+    ], 
+    "filename": "task_execution.proto"
+  }, 
+  {
+    "name": "ListTasksRequest", 
+    "pytype": "<class 'google.protobuf.descriptor_pb2.DescriptorProto'>", 
+    "package": "tes", 
+    "type": "Message", 
+    "properties": [
+      {
+        "type": 9, 
+        "name": "project"
+      }, 
+      {
+        "type": 9, 
+        "name": "name_prefix"
+      }, 
+      {
+        "type": 13, 
+        "name": "page_size"
+      }, 
+      {
+        "type": 9, 
+        "name": "page_token"
+      }, 
+      {
+        "type": 14, 
+        "name": "view"
+      }
+    ], 
+    "filename": "task_execution.proto"
+  }, 
+  {
+    "name": "ListTasksResponse", 
+    "pytype": "<class 'google.protobuf.descriptor_pb2.DescriptorProto'>", 
+    "package": "tes", 
+    "type": "Message", 
+    "properties": [
+      {
+        "type": 11, 
+        "name": "tasks"
+      }, 
+      {
+        "type": 9, 
+        "name": "next_page_token"
+      }
+    ], 
+    "filename": "task_execution.proto"
+  }, 
+  {
+    "name": "CancelTaskRequest", 
+    "pytype": "<class 'google.protobuf.descriptor_pb2.DescriptorProto'>", 
+    "package": "tes", 
+    "type": "Message", 
+    "properties": [
+      {
+        "type": 9, 
+        "name": "id"
+      }
+    ], 
+    "filename": "task_execution.proto"
+  }, 
+  {
+    "name": "CancelTaskResponse", 
+    "pytype": "<class 'google.protobuf.descriptor_pb2.DescriptorProto'>", 
+    "package": "tes", 
+    "type": "Message", 
+    "properties": [], 
+    "filename": "task_execution.proto"
+  }, 
+  {
+    "name": "ServiceInfoRequest", 
+    "pytype": "<class 'google.protobuf.descriptor_pb2.DescriptorProto'>", 
+    "package": "tes", 
+    "type": "Message", 
+    "properties": [], 
+    "filename": "task_execution.proto"
+  }, 
+  {
+    "name": "ServiceInfo", 
+    "pytype": "<class 'google.protobuf.descriptor_pb2.DescriptorProto'>", 
+    "package": "tes", 
+    "type": "Message", 
+    "properties": [
+      {
+        "type": 9, 
+        "name": "name"
+      }, 
+      {
+        "type": 9, 
+        "name": "doc"
+      }, 
+      {
+        "type": 9, 
+        "name": "storage"
+      }
+    ], 
+    "filename": "task_execution.proto"
+  }
+]

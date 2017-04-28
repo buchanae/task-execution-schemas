@@ -1,0 +1,77 @@
+[
+  {
+    "name": "Http", 
+    "pytype": "<class 'google.protobuf.descriptor_pb2.DescriptorProto'>", 
+    "package": "google.api", 
+    "type": "Message", 
+    "properties": [
+      {
+        "type": 11, 
+        "name": "rules"
+      }
+    ], 
+    "filename": "google/api/http.proto"
+  }, 
+  {
+    "name": "HttpRule", 
+    "pytype": "<class 'google.protobuf.descriptor_pb2.DescriptorProto'>", 
+    "package": "google.api", 
+    "type": "Message", 
+    "properties": [
+      {
+        "type": 9, 
+        "name": "selector"
+      }, 
+      {
+        "type": 9, 
+        "name": "get"
+      }, 
+      {
+        "type": 9, 
+        "name": "put"
+      }, 
+      {
+        "type": 9, 
+        "name": "post"
+      }, 
+      {
+        "type": 9, 
+        "name": "delete"
+      }, 
+      {
+        "type": 9, 
+        "name": "patch"
+      }, 
+      {
+        "type": 11, 
+        "name": "custom"
+      }, 
+      {
+        "type": 9, 
+        "name": "body"
+      }, 
+      {
+        "type": 11, 
+        "name": "additional_bindings"
+      }
+    ], 
+    "filename": "google/api/http.proto"
+  }, 
+  {
+    "name": "CustomHttpPattern", 
+    "pytype": "<class 'google.protobuf.descriptor_pb2.DescriptorProto'>", 
+    "package": "google.api", 
+    "type": "Message", 
+    "properties": [
+      {
+        "type": 9, 
+        "name": "kind"
+      }, 
+      {
+        "type": 9, 
+        "name": "path"
+      }
+    ], 
+    "filename": "google/api/http.proto"
+  }
+]
