@@ -73,8 +73,8 @@ def build_table(fields):
     rows.append(['---'] * len(headers))
     for field, c in fields:
         comments, required, output_only = c
-        required = "Yes" if required else "No"
-        output_only = "Yes" if output_only else "No"
+        required = "Required" if required else ""
+        output_only = "Output only" if output_only else ""
         rows.append([field.name, "<br>".join(comments), required, output_only])
     return rows
 
