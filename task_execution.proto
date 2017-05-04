@@ -5,26 +5,39 @@ package tes;
 // Import HTTP RESTful annotations.
 import "google/api/annotations.proto";
 
-// Task describes an instance of a task.
+// Task is the core of the task execution schema. It represents:
+//
+// - metadata: id, name, description, tags, etc.
+// - state: queued, running, complete, error, etc.
+// - inputs: files to be downloaded before the task commands are run.
+// - outputs: files to be uploaded after the task completes.
+// - resources: CPU, RAM, Disk, and other resource requests.
+// - logs: stdout, stderr, and other logs collected while running the task.
 message Task {
 
-  // OUTPUT ONLY
-  //
   // Task identifier assigned by the server.
+  //
+  // OUTPUT ONLY
   string id = 1;
 
+  // Task state. See the State enum for possible values.
+  //
   // OUTPUT ONLY
   State state = 2;
 
+  // Human-readable task name.
+  //
   // OPTIONAL
   string name = 3;
 
-  // OPTIONAL
-  //
-  // Describes the project this task is associated with.
+  // Project identifier this task is associated with.
   // Commonly used for billing on cloud providers (AWS, Google Cloud, etc).
+  //
+  // OPTIONAL
   string project = 4;
 
+  // Human-readable task description.
+  //
   // OPTIONAL
   string description = 5;
 
@@ -70,6 +83,8 @@ message Task {
   repeated TaskLog logs = 12;
 }
 
+// FileType allows TaskParameter to describe whether an input/output
+// is a regular file or directory.
 enum FileType {
   FILE = 0;
   DIRECTORY = 1;
