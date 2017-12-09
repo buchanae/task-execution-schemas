@@ -445,6 +445,61 @@ message ListTasksRequest {
   // Affects the fields included in the returned Task messages.
   // See TaskView below.
   TaskView view = 5;
+
+  // Filters
+  // =======
+  // Filters are combined together using logical AND.
+  // Logical OR and NOT are not supported.
+
+  // OPTIONAL
+  // 
+  // Filter tasks based on the Task.state field.
+  State state_filter = 6;
+
+  // OPTIONAL
+  // 
+  // Filter tasks based on the Task.tags field.
+  // Multiple entries are combined using logical AND.
+  // A tag filter matches a Task tag if both the key and value are exact matches.
+  //
+  //   Filter                            Tags                          Match?
+  //   ----------------------------------------------------------------------
+  //   {"foo": "bar"}                    {"foo": "bar"}                Yes
+
+  //   {"foo": ""}                       {"foo": ""}                   Yes
+  //   {"foo": ""}                       {"foo": "bar"}                No
+
+  //   {"foo": "bar", "baz": "bat"}      {"foo": "bar", "baz": "bat"}  Yes
+  //   {"foo": "bar"}                    {"foo": "bar", "baz": "bat"}  Yes
+
+  //   {"foo": "*"}                      {"foo": "bar"}                Yes
+  //   {"*": "bar"}                      {"foo": "bar"}                Yes
+
+  //   {"*": "*"}                        {"foo": "bar"}                Match everything?
+  //   {"*": ""}                         {"foo": "bar"}                ?
+  //   {"": "*"}                         {"foo": "bar"}                Invalid?
+  //   {"": ""}                          {"foo": "bar"}                Invalid?
+  //   {"": "bar"}                       {"foo": "bar"}                Invalid?
+
+  //   {"foo": "*ar"}                    {"foo": "bar"}                No
+  //   {"fo*": "bar"}                    {"foo": "bar"}                No
+  //   {"foo": "ba"}                     {"foo": "bar"}                No
+  //   {"foo": "bar", "baz": "bat"}      {"foo": "bar"}                No
+  //   {"foo": "bar", "baz": ""}         {"foo": "bar"}                No
+  //   {"foo": "bar", "baz": "*"}        {"foo": "bar"}                No
+  map<string,string> tag_filter = 7;
+
+  // OPTIONAL
+  // 
+  // Filter tasks based on the Task.creation_time field.
+  // Date + time is formatted as RFC 3339.
+  string created_after = 8;
+
+  // OPTIONAL
+  // 
+  // 
+  // Date + time is formatted as RFC 3339.
+  string created_before = 9;
 }
 
 // TaskView affects the fields returned by the ListTasks endpoint.
