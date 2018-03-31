@@ -1,0 +1,36 @@
+swagger: "2.0"
+
+info:
+  version: "0.3.0"
+  title: Comp Bio APIs
+  description: >
+    Foo
+
+schemes:
+- http
+- https
+
+consumes: [application/json]
+produces: [application/json]
+
+basePath: /v0
+
+
+paths:
+  /tasks:
+    post:
+      $ref: ops/CreateTask.yaml
+    get:
+      $ref: ops/ListTasks.yaml
+
+  /tasks/{id}:
+    get:
+      $ref: ops/GetTask.yaml
+
+  "/tasks/{id}:cancel":
+    post:
+      $ref: ops/CancelTask.yaml
+
+  /tasks/service-info:
+    get:
+      $ref: ops/GetServiceInfo.yaml

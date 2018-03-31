@@ -1,0 +1,31 @@
+title: Output
+description: Task output file.
+
+type: object
+properties:
+
+  name:
+    type: string
+
+  description:
+    type: string
+
+  url:
+    description: |-
+      URL in long term storage, for example:
+      s3://my-object-store/file1
+      gs://my-bucket/file2
+      file:///path/to/my/file
+      /path/to/my/file
+      etc...
+    type: string
+
+  path:
+    description: |-
+      Path of the file inside the container.
+      Must be an absolute path.
+    type: string
+
+  type:
+    description: Type of the file, FILE or DIRECTORY
+    $ref: FileType.yaml

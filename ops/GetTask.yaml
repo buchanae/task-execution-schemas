@@ -1,0 +1,40 @@
+
+summary: Get a task.
+operationId: GetTask
+tags: [Tasks]
+
+parameters:
+
+- name: id
+  in: path
+  required: true
+  type: string
+
+- name: view
+  description: |-
+    OPTIONAL. Affects the fields included in the returned Task messages.
+    See TaskView below.
+
+     - MINIMAL: Task message will include ONLY the fields:
+      Task.Id
+      Task.State
+     - BASIC: Task message will include all fields EXCEPT:
+      Task.ExecutorLog.stdout
+      Task.ExecutorLog.stderr
+      Input.content
+      TaskLog.system_logs
+     - FULL: Task message includes all fields.
+  in: query
+  required: false
+  type: string
+  enum:
+  - MINIMAL
+  - BASIC
+  - FULL
+  default: MINIMAL
+
+responses:
+  200:
+    description: Created.
+    schema:
+      $ref: ../defs/Task.yaml

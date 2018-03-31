@@ -1,0 +1,40 @@
+title: Input
+description: Task input file.
+
+type: object
+
+properties:
+  name:
+    type: string
+  description:
+    type: string
+  url:
+    type: string
+    description: |
+      Required, unless "content" is set.
+
+      URL in long term storage, for example:
+      s3://my-object-store/file1
+      gs://my-bucket/file2
+      file:///path/to/my/file
+      /path/to/my/file
+      etc...
+  path:
+    type: string
+    description: |-
+      Path of the file inside the container.
+      Must be an absolute path.
+  type:
+    $ref: '#/definitions/FileType'
+    description: Type of the file, FILE or DIRECTORY
+
+  content:
+    type: string
+    description: "File content literal. \nImplementations should support a minimum
+      of 128 KiB in this field and may define its own maximum.\nUTF-8 encoded\n\nIf
+      content is not empty, \"url\" must be ignored."
+
+
+definitions:
+  FileType:
+    $ref: FileType.yaml

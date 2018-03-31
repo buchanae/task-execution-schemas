@@ -1,0 +1,37 @@
+title: Resources
+description: |-
+  Resources describes the resources requested by a task.
+
+type: object
+properties:
+
+  cpuCores:
+    description: |-
+      Requested number of CPUs.
+    type: integer
+    format: int64
+
+  preemptible:
+    description: |-
+      Is the task allowed to run on preemptible compute instances?
+    type: boolean
+    format: boolean
+
+  ramGB:
+    description: |-
+      Requested RAM required in gigabytes (GB)
+    type: number
+    format: double
+
+  diskGB:
+    description: |-
+      Requested disk size in gigabytes (GB)
+    type: number
+    format: double
+
+  zones:
+    description: |-
+      Request that the task be run in these compute zones.
+    type: array
+    items:
+      type: string
