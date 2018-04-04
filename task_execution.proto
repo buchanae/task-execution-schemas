@@ -13,9 +13,6 @@ message Task {
   // Task identifier assigned by the server.
   string id = 1;
 
-  // OUTPUT ONLY
-  State state = 2;
-
   // OPTIONAL
   string name = 3;
 
@@ -64,13 +61,6 @@ message Task {
   //
   // A key-value map of arbitrary tags.
   map<string, string> tags = 11;
-
-  // OUTPUT ONLY
-  //
-  // Task logging information.
-  // Normally, this will contain only one entry, but in the case where
-  // a task fails and is retried, an entry will be appended to this list.
-  repeated TaskLog logs = 12;
 
   // OUTPUT ONLY, REQUIRED
   //
@@ -402,6 +392,7 @@ message CreateTaskResponse {
   //
   // Task identifier assigned by the server.
   string id = 1;
+  string version = 2;
 }
 
 // GetTaskRequest describes a request to the GetTask endpoint.
@@ -527,6 +518,10 @@ message ServiceInfo {
   repeated string storage = 3;
 }
 
+message UpdateTaskResponse {
+  string version = 2;
+}
+
 // TaskService describes the HTTP/gRPC service API provided by TES
 // services to create, list, get, update tasks.
 service TaskService {
@@ -548,6 +543,13 @@ service TaskService {
     };
   }
 
+  rpc UpdateTask(Task) returns (UpdateTaskResponse) {
+    option (google.api.http) = {
+      post: "/v1/tasks/{id}:update"
+      body: "*"
+    };
+  }
+
   // List tasks.
   // TaskView is requested as such: "v1/tasks?view=BASIC"
   rpc ListTasks(ListTasksRequest) returns (ListTasksResponse) {
@@ -563,12 +565,49 @@ service TaskService {
         get: "/v1/tasks/{id}"
       };
   }
+}
 
-  // Cancel a task.
-  rpc CancelTask(CancelTaskRequest) returns (CancelTaskResponse) {
+message Execution {
+
+  // OUTPUT ONLY
+  State state = 2;
+
+  // OUTPUT ONLY
+  //
+  // Task logging information.
+  // Normally, this will contain only one entry, but in the case where
+  // a task fails and is retried, an entry will be appended to this list.
+  repeated TaskLog logs = 12;
+}
+
+message ExecutionRequest {
+  string task_id = 1
+}
+
+service TaskExecutionService {
+
+  rpc CreateExecution(ExecutionRequest) returns (Execution) {
     option (google.api.http) = {
-      post: "/v1/tasks/{id}:cancel"
+      post: "/v1/executions"
+      body: "*"
     };
   }
 
+  rpc ListExecutions(ListExecutionsRequest) returns (ListExecutionsResponse) {
+    option (google.api.http) = {
+      get: "/v1/executions"
+    };
+  }
+
+  rpc GetExecution(GetExecutionRequest) returns (Execution) {
+      option (google.api.http) = {
+        get: "/v1/executions/{execution_id}"
+      };
+  }
+
+  rpc CancelExecution(CancelExecutionRequest) returns (CancelExecutionResponse) {
+    option (google.api.http) = {
+      post: "/v1/executions/{execution_id}:cancel"
+    };
+  }
 }
